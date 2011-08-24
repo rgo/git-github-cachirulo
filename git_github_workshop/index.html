@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Git & GitHub</title>
+
+  <meta name="description" content="Taller de Git & GitHub">
+  <meta name="author" content="Rafael García Ortega">
+  <meta name="viewport" content="width=1024">
+
+  <!-- Core and extension CSS files -->
+  <link rel="stylesheet" href="../core/deck.core.css">
+  <link rel="stylesheet" href="../extensions/goto/deck.goto.css">
+  <link rel="stylesheet" href="../extensions/menu/deck.menu.css">
+  <link rel="stylesheet" href="../extensions/navigation/deck.navigation.css">
+  <link rel="stylesheet" href="../extensions/status/deck.status.css">
+  <link rel="stylesheet" href="../extensions/hash/deck.hash.css">
+
+  <!-- Theme CSS files (menu swaps these out) -->
+  <link rel="stylesheet" id="style-theme-link" href="../themes/style/web-2.0.css">
+  <link rel="stylesheet" id="transition-theme-link" href="../themes/transition/horizontal-slide.css">
+
+  <!-- Custom CSS just for this page -->
+  <link rel="stylesheet" href="workshop.css">
+
+  <script src="../modernizr.custom.js"></script>
+</head>
+
+<body class="deck-container">
+
+  <div class="theme-menu">
+    <h2>Themes</h2>	
+
+    <label for="style-themes">Style:</label>
+    <select id="style-themes">
+      <option selected value="../themes/style/web-2.0.css">Web 2.0</option>
+      <option value="../themes/style/swiss.css">Swiss</option>
+      <option value="../themes/style/neon.css">Neon</option>
+      <option value="">None</option>
+    </select>
+
+    <label for="transition-themes">Transition:</label>
+    <select id="transition-themes">
+      <option selected value="../themes/transition/horizontal-slide.css">Horizontal Slide</option>
+      <option value="../themes/transition/vertical-slide.css">Vertical Slide</option>
+      <option value="../themes/transition/fade.css">Fade</option>
+      <option value="">None</option>
+    </select>
+  </div>
+
+  <div class="slide" id="title-slide">
+    <h1>Git & GitHub</h1>
+  </div>
+
+  <div class="slide" id="video-slide">
+    <h2>C'est la vie</h2>
+    <iframe width="420" height="345" src="http://www.youtube.com/embed/uO5LhU29udk" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <div class="slide" id="what-is-git-logo-slide">
+    <h2>¿Qué es Git?</h2>
+    <img src="images/git-logo.png" alt="git logo" />
+  </div>
+
+  <div class="slide" id="what-is-git-slide">
+    <h2>¿Qué es Git?</h2>
+    <blockquote cite="http://git-scm.com/">
+      <p>Git sistema de control de versiones</p>
+      <p>distribuido, open source</p>
+      <p>diseñado para ser rápido y eficiente</p>
+      <p><cite>Traducción libre</cite></p>
+    </blockquote>
+  </div>
+
+  <div class="slide" id="why-git-slide">
+    <h2>¿Por qué Git?</h2>
+    <ul>
+      <li class="slide">Distribuido</li>
+      <li class="slide"><a href="http://git-scm.com/about">Open source</a></li>
+      <li class="slide">Rápido y eficiente</li>
+    </ul>
+  </div>
+
+  <div class="slide" id="git-getting-started-slide">
+    <h2>Arrancamos con Git</h2>
+    <img src="images/bici.jpg" alt="Empezando con git" />
+  </div>
+
+  <div class="slide" id="git-configuration-slide">
+    <h2>Configurando Git</h2>
+    <p>Definiendo nuestro usuario e email:</p>
+    <pre>
+    $ git config --global user.name "Rafa G."
+    $ git config --global user.email foo@example.com </pre>
+    <h3>Opcional:</h3>
+    <p>Definiendo nuestro editor preferido:</p>
+    <pre>
+    $ git config --global core.editor joe</pre>
+
+    <p>Definiendo nuestra herramienta de diff:</p>
+    <pre>
+    $ git config --global merge.tool meld</pre>
+    <p>Mensajes de salida coloreados:</p>
+    <pre>
+    $ git config --global color.ui auto</pre>
+  </div>
+
+  <div class="slide" id="git-help-slide">
+    <h2>La ayuda de Git:</h2>
+    <p>3 maneras de pedir la ayuda de config:</p>
+    <pre>
+    $ git help config
+    $ git config --help
+    $ man git-config</pre>
+    <p class="slide">Si no siempre podemos preguntarle a Google :)</p>
+  </div>
+
+  <div class="slide" id="git-create-repository-slide">
+    <h2>Creando un repositorio</h2>
+    <p>Inicializamos un repositorio local:</p>
+    <pre>
+    $ cd cachirulo/
+    $ git init
+    Initialized empty Git repository in /home/rafa/cachirulo/.git/ </pre>
+  </div>
+
+  <div class="slide" id="git-status-repository-slide">
+    <h2>Estado del repositorio</h2>
+    <p>Comprobamos el estado del directorio de trabajo:</p>
+    <pre>
+    $ git status </pre>
+    <p>Podemos ver su histórico:</p>
+    <pre>
+    $ git log </pre>
+    <p>Con una interfaz gráfica:</p>
+    <pre>
+    $ gitg </pre>
+    <p class="note">Nota: El comando "gitg" puede no existir, prueba con "gitk".</p>
+  </div>
+
+  <div class="slide" id="git-add-commit-repository-slide">
+    <h2>Add & commit &lt;3 </h2>
+    <p>Añadimos los ficheros y los "commiteamos":</p>
+    <pre>
+    $ vi ruby_on_beers.rb
+    $ git add .
+    $ git commit -m "First commit"
+    [master (root-commit) 2f50bf2] First commit
+     1 files changed, 3 insertions(+), 0 deletions(-)
+     create mode 100644 ruby_on_beers.rb </pre>
+    <p class="note">Nota: Haz "git status" en cada paso para ver el estado del fichero.</p>
+  </div>
+
+  <div class="slide" id="git-status-detail-slide">
+    <h2>Git status al detalle</h2>
+    <p>Viendo que ha cambiado en nuestro repositorio y como se representan los cambios:</p>
+    <pre>
+    $ vi ruby_on_beers.rb   # Realizo cambios
+    $ touch README
+    $ touch ignore_me
+    $ git add README
+    $ git status </pre>
+  </div>
+
+  <div class="slide" id="git-status-detail2-slide">
+    <h2>Git status al detalle</h2>
+    <p>La salida de git status es la siguiente:</p>
+    <pre>
+    $ git status
+    # On branch master
+    # Changes to be committed:
+    #   (use "git reset HEAD <file>..." to unstage)
+    #
+    #	new file:   README
+    #
+    # Changes not staged for commit:
+    #   (use "git add <file>..." to update what will be committed)
+    #   (use "git checkout -- <file>..." to discard changes in working directory)
+    #
+    #	modified:   ruby_on_beers.rb
+    #
+    # Untracked files:
+    #   (use "git add <file>..." to include in what will be committed)
+    #
+    #	ignore_me </pre>
+  </div>
+
+  <div class="slide" id="git-ignore-slide">
+    <h2>Ignorar ficheros</h2>
+    <p>Podemos ignorar ficheros para mantener limpio nuestro "working tree":</p>
+    <pre>
+    $ echo "ignore_me
+    tmp/*
+    tmp/**/* " > .gitignore
+    $ git add .gitignore
+    $ git commit -m 'Ignore ignore_me and tmp files'</pre>
+    <p class="note">Nota: Haz "git status" antes y después de crear el fichero .gitinore para ver el estado del directorio de trabajo</p>
+  </div>
+
+  <div class="slide" id="git-undoing-changes-slide">
+    <h2>Deshaciendo cambios</h2>
+    <img src="images/remedio.png" alt="Tirita para solucionarlo todo" />
+  </div>
+
+  <div class="slide" id="git-undoing-uncommitted-not-added-changes-slide">
+    <h2>Deshaciendo cambios no añadidos a staging</h2>
+    <p>Restaurar un fichero modificado <span class="bold">(¡perdiendo los cambios!)</span>:</p>
+    <pre>
+    $ echo "Dábale arroz a la zorra el abad" > README
+    $ git checkout -- README </pre>
+    <p class="note">Nota: Generalmente se puede omitir el "--", indica que el resto de argumentos son directorios y/o ficheros</p>
+  </div>
+
+  <div class="slide" id="git-undoing-uncommitted-added-changes-slide">
+    <h2>Deshaciendo cambios añadidos a staging</h2>
+    <p>Restaurar un fichero:</p>
+    <pre>
+    $ echo "Debo confesar que nací a una edad muy temprana" > README
+    $ git  add .
+    $ git reset HEAD README
+    Unstaged changes after reset:
+    M	README</pre>
+  </div>
+
+  <div class="slide" id="git-undoing-committed-changes-slide">
+    <h2>Deshaciendo cambios "committed" sin dejar rastro</h2>
+    <img src="images/spiderman.png" alt="Un gran poder... supone una gran responsabilidad" />
+  </div>
+  <div class="slide" id="git-undoing-committed-changes2-slide">
+    <h2>Deshaciendo cambios "committed" sin dejar rastro</h2>
+    <p>Borrando un commit directamente:</p>
+    <pre>
+    $ git reset --hard HEAD^</pre>
+
+    <p>Borrando los 3 últimos commits:</p>
+    <pre>
+    $ git reset --hard HEAD~3</pre>
+    <p class="note">Nota: "HEAD^" indica revisión anterior de "HEAD", por lo que "HEAD~3" es equivalente a "HEAD^^^" </p>
+  </div>
+
+  <div class="slide" id="git-undoing-committed-changes2-slide">
+    <h2>Deshaciendo cambios "committed" sin dejar rastro</h2>
+    <p>Deshaciendo commits manteniendo los cambios en staging:</p>
+    <pre>
+    $ git reset --soft HEAD^</pre>
+  </div>
+
+  <div class="slide" id="git-organizing-files-slide">
+    <h2>Organizando ficheros</h2>
+    <img src="images/desorden.jpg" alt="Desorden" />
+  </div>
+
+  <div class="slide" id="git-move-remove-files-slide">
+    <h2>Organizando ficheros</h2>
+    <p>Mover ficheros es tan simple como:</p>
+    <pre>
+    $ git mv ruby_on_beers.rb ruby-on-beers.rb</pre>
+
+    <p>Borrar ficheros sigue la misma convención:</p>
+    <pre>
+    $ git rm ruby-on-beers.rb</pre>
+    <p class="note">Nota: Recuerda que debes hacer commit para que los cambios se hagan permanentes.</p>
+  </div>
+
+  <div class="slide" id="git-branches-slide">
+    <h2>Ramas</h2>
+    <img src="images/ramas.png" alt="Ramas" />
+  </div>
+
+  <div class="slide" id="git-branches-create-slide">
+    <h2>Crear ramas</h2>
+    <p>Crear una rama y moverme a ella:</p>
+    <pre>
+    $ git branch foo
+    $ git checkout foo
+    Switched to branch 'foo'</pre>
+    <p class="note">Nota: La misma acción con un solo comando sería "git checkout -b bar".</p>
+  </div>
+
+  <div class="slide" id="git-branches-list-slide">
+    <h2>Listar ramas</h2>
+    <p>Listado de las ramas disponibles:</p>
+    <pre>
+    $ git branch
+      bar
+    * foo
+      master </pre>
+    <p class="note">Nota: El asterisco indica la rama en la que me encuentro actualmente.</p>
+  </div>
+
+  <div class="slide" id="git-branches-merge-slide">
+    <h2>Merge de ramas</h2>
+    <p>"Mergeando" ramas modificadas:</p>
+    <pre>
+    $ git checkout master
+    Switched to branch 'master'
+    $ git merge foo
+    Updating 1e817cc..c9fe47a
+    Fast-forward
+     0 files changed, 0 insertions(+), 0 deletions(-)
+     create mode 100644 foo
+    $ git merge bar
+    Merge made by recursive.
+     0 files changed, 0 insertions(+), 0 deletions(-)
+     create mode 100644 barrrr</pre>
+  </div>
+
+  <div class="slide" id="git-branches-merge-fast-forward-slide">
+    <h2>Fast-forward merge</h2>
+    <p>Antes del merge:</p>
+    <img src="images/git-fast-forward-before.png" alt="git diagram before fast forward" />
+    <p>Después del merge:</p>
+    <img src="images/git-fast-forward-after.png" alt="git diagram after fast forward" />
+  </div>
+
+  <div class="slide" id="git-branches-merge-recursive-slide">
+    <h2>Recursive merge</h2>
+    <p>Antes del merge:</p>
+    <img src="images/git-recursive-merge-before.png" alt="git diagram before recursive merge" />
+    <p>Después del merge:</p>
+    <img src="images/git-recursive-merge-after.png" alt="git diagram after recursive merge" />
+  </div>
+
+  <div class="slide" id="git-branches-merge-problem-slide">
+    <h2>El problema del recursive merge</h2>
+    <img src="images/git-merge-problem.png" alt="problems derivated by recursive merge"/>
+    <p class="credits">http://4.bp.blogspot.com/-Y99dcDsHSl8/TXaprrV505I/AAAAAAAABFI/7OjSuPcr2OQ/s400/gitkstyle.png</p>
+  </div>
+
+  <div class="slide" id="git-branches-rebase-slide">
+    <h2>Rebase de ramas</h2>
+    <p>Haciendo "rebase" de las ramas:</p>
+    <pre>
+    $ git checkout master
+    $ git rebase rebase-foo
+    First, rewinding head to replay your work on top of it...
+    Fast-forwarded master to rebase-foo.
+    $ git rebase rebase-bar
+    First, rewinding head to replay your work on top of it...
+    Applying: rebase foo
+  </div>
+
+  <div class="slide" id="git-branches-remove-slide">
+    <h2>Borrando ramas</h2>
+    <p>Para borrar ramas:</p>
+    <pre>
+    $ git branch -d bar
+    Deleted branch bar (was 7fc22ab).</pre>
+    <p class="note">Nota: Si la rama no ha sido "mergeada" hay que usar el parámetro "-D".</p>
+  </div>
+
+  <div class="slide" id="git-tags-slide">
+    <h2>Tags</h2>
+    <img src="images/tags.jpg" alt="Etiquetas a tutiple" />
+  </div>
+
+  <div class="slide" id="git-tags-basics-slide">
+    <h2>Tags</h2>
+    <p>Crear un tag:</p>
+    <pre>
+    $ git tag v1.0</pre>
+    <p>Listado de tags:</p>
+    <pre>
+    $ git tag
+    v1.0
+    </pre>
+    <p>Borrar tags:</p>
+    <pre>
+    $ git tag -d v1.0
+    Deleted tag 'v1.0' (was 1e9ec5b)
+    </pre>
+  </div>
+
+
+  <div class="slide" id="what-is-github-logo-slide">
+    <h2>¿Qué es GitHub?</h2>
+    <img src="images/github-logo.jpg" alt="github logo" />
+  </div>
+
+  <div class="slide" id="what-is-github-slide">
+    <h2>¿Qué es GitHub?</h2>
+    <blockquote cite="http://github.com/">
+    <p>GitHub is the best way to collaborate with others.</p>
+    <p>Fork, send pull requests and manage all your public and private git repositories.</p>
+    </blockquote>
+  </div>
+
+  <div class="slide" id="why-social-coding-slide">
+    <h2>¿Qué lo hace social?</h2>
+    <ul>
+    <li class="slide">Mensajes</li>
+    <li class="slide">Follow de usuarios</li>
+    <li class="slide">Watch proyectos</li>
+    <li class="slide">Forks</li>
+    <li class="slide">Pull requests</li>
+    </ul>
+  </div>
+
+  <div class="slide" id="github-install-slide">
+    <h2>Instalación</h2>
+    <ul>
+    <li><a href="http://help.github.com/linux-set-up-git/">Linux</a></li>
+    <li><a href="http://help.github.com/mac-set-up-git/">Mac</a></li>
+    <li><a href="http://help.github.com/win-set-up-git/">Windows</a></li>
+    </ul>
+  </div>
+
+  <div class="slide" id="github-new-repo-slide">
+    <h2>Crear un nuevo repositorio</h2>
+    <p>Buscamos el botón que dice "New repository", completamos el formulario y seguimos las instrucciones.</p>
+    <p class="slide">¡Voila! Ya tenemos nuestro repositorio.</p>
+  </div>
+
+  <div class="slide" id="github-new-repo-next-steps-slide">
+    <h2>Crear un nuevo repositorio</h2>
+    <p>Explicación de los pasos previos:</p>
+    <pre>
+    $ mkdir cachirulo
+    $ cd cachirulo
+    $ git init
+    $ touch README
+    $ git add README
+    $ git commit -m 'first commit'
+    $ git remote add origin git@github.com:rgo/cachirulo.git
+    $ git push -u origin master</pre>
+  </div>
+
+  <div class="slide" id="github-new-repo-admin-slide">
+    <h2>Administración de un repositorio</h2>
+    <ul>
+    <li>Opciones</li>
+    <li>Colaboradores</li>
+    <li>Hooks</li>
+    <li>Deploy keys</li>
+    </ul>
+  </div>
+
+  <div class="slide" id="github-common-flow-slide">
+    <h2>Flujo de trabajo normal</h2>
+    <ol>
+    <li>Actualizo mi repositorio local con el remoto:
+    <pre>
+    $ git pull --rebase</pre></li>
+    <li>Creo una rama:
+    <pre>
+    $ git checkout -b killer-feature</pre></li>
+    <li>Hago los cambios pertinentes(add & commit) en mi repositorio local</li>
+    <li>Realizo un rebase:
+    <pre>
+    $ git checkout master
+    $ git rebase killer-feature</pre></li>
+    <li>Subo los cambios al repositorio público/remoto:
+    <pre>
+    $ git push origin master</pre></li>
+    </ol>
+  </div>
+
+  <div class="slide" id="github-new-repo-slide">
+    <h2>Fork repositorios</h2>
+    <ol>
+    <li>Pulsamos el botón de fork en el repositorio elegido</li>
+    <li>Lo clonamos en local:
+    <pre>
+    $ git clone git@github.com:username/proyecto-molon.git </pre>
+    </li>
+    <li>Creamos una rama remota apuntando al repositorio original para poder actualizar nuestro fork:
+    <pre>
+    $ git remote add upstream git@github.com:owner/proyecto-molon.git</pre>
+    </li>
+    <li>Descargamos repositorio remoto y actualizamos nuestro fork:
+    <pre>
+    $ git fetch upstream
+    $ git merge upstream/master</pre>
+    </pre></li>
+    <p class="note">Nota: Para actualizar nuestro fork podemos hacer pull o también pull --rebase</p>
+  </div>
+
+  <div class="slide" id="github-pull-request-slide">
+    <h2>Colaborando en proyectos</h2>
+    <ol>
+      <li>Hacemos un fork como hemos indicado anteriormente</li>
+      <li>Creamos una rama:
+        <pre>
+    $ git checkout -b fix-world </pre>
+      </li>
+      <li>Arreglamos el mundo... :)</li>
+      <li>Subimos nuestra rama local a github:
+        <pre>
+    $ git push origin fix-world</pre>
+      </li>
+      <li>Desde la interfaz de GitHub nos movemos a la rama "fix-world"</li>
+      <li>Y pulsamos el botón "Pull Request"</li>
+    </ol>
+    <p class="note">Nota: Información detallada sobre <a href="http://help.github.com/send-pull-requests/">Pull Requests</a></p>
+    <p class="note">Nota2: Para borrar la rama remota se utiliza el comando: "git push origin :fix-world"</p>
+  </div>
+
+  <div class="slide" id="github-fatalities-slide">
+    <h2>Git Fatalities</h2>
+    <img src="images/fatality.png" alt="Golpes fatales de Git" />
+  </div>
+
+  <div class="slide" id="github-conflicts-slide">
+    <h2>Conflictos</h2>
+    <ol>
+      <li>Creamos una rama y modificamos un ficheros</li>
+      <li>Creamos otra rama y modificamos el mismo fichero</li>
+      <li>Hacemos rebase de la primera rama</li>
+      <li>Hacemos rebase de la otra rama y... ¡conflicto!:
+        <pre>
+        $ git rebase bar
+        First, rewinding head to replay your work on top of it...
+        Applying: Lorem ipsum
+        Using index info to reconstruct a base tree...
+        Falling back to patching base and 3-way merge...
+        Auto-merging README
+        CONFLICT (content): Merge conflict in README
+        Failed to merge in the changes.
+        Patch failed at 0001 Lorem ipsum
+
+        When you have resolved this problem run "git rebase --continue".
+        If you would prefer to skip this patch, instead run "git rebase --skip".
+        To restore the original branch and stop rebasing run "git rebase --abort".</pre>
+      </li>
+      <li>Lo solucionamos y añadimos el fichero</li>
+      <li>Continuamos con el rebase:
+      <pre>
+      $ git rebase --continue
+      Applying: Lorem ipsum</pre></li>
+      </ol>
+    <p class="note">Nota: Si el conflicto viene por un merge se resuelve el conflicto, se añade y si "commitea".</p>
+    <p class="note">Nota2: El comando "git mergetool" te mostrará la interfaz gráfica definida para diffs.</p>
+  </div>
+
+  <div class="slide" id="github-stash-slide">
+    <h2>Stash</h2>
+    <p>Ocultando cambios(temporalmente) para trabajar en otra cosa:</p>
+    <pre>
+    $ git status
+    # On branch master
+    # Changes not staged for commit:
+    #   (use "git add <file>..." to update what will be committed)
+    #   (use "git checkout -- <file>..." to discard changes in working directory)
+    #
+    #	modified:   README
+    #
+    no changes added to commit (use "git add" and/or "git commit -a")
+    $ git stash
+    Saved working directory and index state WIP on master: 3263921 Lorem ipsum
+    HEAD is now at 3263921 Lorem ipsum
+    $ git status
+    # On branch master
+    nothing to commit (working directory clean)
+    $ git stash pop
+    </pre>
+    <p class="note">Nota: Recomiendo leer "man git-stash" para ver todas sus opciones.</p>
+  </div>
+
+  <div class="slide" id="github-blame-slide">
+    <h2>Blame</h2>
+    <p>Para saber quien es el culpable de un cambio:</p>
+    <pre>
+    $ git blame README
+    $ git blame -L 5 README       # Blame de la línea 5
+    $ git blame -L 5,10 README    # Blame de las líneas 5 a la 10
+    $ git blame -L 5,+5 README    # Blame de las líneas 5 a la 10
+    </pre>
+    <p class="note">Nota: El parámetro "-L" acepta expresiones regulares como inicio.</p>
+  </div>
+
+  <div class="slide" id="github-remote-tags-slide">
+    <h2>Tags remotos</h2>
+    <p>Crear tags en el servidor público:</p>
+    <pre>
+    $ git tag v2.0
+    $ git push --tags</pre>
+    <p class="note">Nota: El push por configuración se hará a origin, explicitamente sería "git push --tags origin".</a></p>
+    <p>Eliminar tags en el servidor público:</p>
+    <pre>
+    $ git push origin :v2.0</pre>
+    <p class="note">Nota: No recomiendo eliminar tags(ni nada) que ya está subido al servidor público.</a></p>
+  </div>
+
+  <div class="slide" id="github-team-workflow-slide">
+    <h2>Un buen flujo de trabajo en equipo</h2>
+    <ol>
+      <li>Una rama estable</li>
+      <li>Una rama master (inestable, de desarrollo)</li>
+      <li>Crea tu rama local siempre desde estable</li>
+      <li>Cuando has terminado: "mergea" la rama en master y deploy a staging</li>
+      <li>Cuando está aceptado: "mergea" la rama en estable y deploy a producción</li>
+      <li>NUNCA: rebase o merge de master</li>
+    </ol>
+    <p class="credits">Sergio Porras - http://www.slideshare.net/sergio.gil/a-git-workflow </p>
+    <p class="note">Nota:<a href="http://nvie.com/posts/a-successful-git-branching-model/">En este enlace</a> otro workflow parecido con más ramas </p>
+  </div>
+
+  <div class="slide" id="github-bisect-slide">
+    <h2>Bisect</h2>
+    <p>Biseccionar para encontrar un problema:</p>
+    <img src="images/git-bisect.png" alt="Diagrama de funcionamiento de bisect">
+    <pre>
+     $ git bisect start
+     $ git bisect bad [commit/branch/tag/etc]
+     $ git bisect good [commit/branch/tag/etc]
+     $ git bisect run [script para automatizar la prueba]
+     </pre>
+    <p class="note">Disclaimer: Nunca he tenido la oportunidad de usarlo pero siempre me ha parecido muy interesante :)</p>
+  </div>
+
+  <div class="slide" id="thanks-slide">
+    <h1>¡Gracias!</h1>
+  </div>
+
+  <div class="slide" id="about-me-slide">
+    <h2>$ finger rafa</h2>
+    <pre>
+  [rafagarcia.net]
+
+  Finger Service
+
+
+  Login name:  rafa                             In real life: Rafael García
+
+  Job:  ideas4all
+
+  Twitter: @leptom
+
+  E-Mail: contacto_at_rafagarcia.net
+
+  URL: http://blog.rafagarcia.net
+
+
+  Comments:
+
+    Me gusta programar con Ruby ( on Rails ) y la administración de sistemas linux.
+
+    Soy un entusiasta del software libre, pertenezco a Aulir e intento colaborar en Capistrano.
+  </pre>
+  </div>
+
+
+
+
+  <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+  <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+  <p class="deck-status">
+    <span class="deck-status-current"></span>
+    /
+    <span class="deck-status-total"></span>
+  </p>
+
+  <form action="." method="get" class="goto-form">
+    <label for="goto-slide">Go to slide:</label>
+    <input type="number" name="slidenum" id="goto-slide">
+    <input type="submit" value="Go">
+  </form>
+  <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
+  <script>window.jQuery || document.write('<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js">\x3C/script>')</script>
+
+    <!-- Deck Core and extensions -->
+    <script src="../core/deck.core.js"></script>
+    <script src="../extensions/menu/deck.menu.js"></script>
+    <script src="../extensions/goto/deck.goto.js"></script>
+    <script src="../extensions/status/deck.status.js"></script>
+    <script src="../extensions/navigation/deck.navigation.js"></script>
+    <script src="../extensions/hash/deck.hash.js"></script>
+
+    <!-- Specific to this page -->
+    <script src="workshop.js"></script>
+
+  </body>
+</html>
